@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HomePage">
+
+
+    <ImageView
+        android:id="@+id/img_rect_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:srcCompat="@drawable/background_rectangle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/header_homepage" />
+
+    <TextView
+        android:layout_width="131dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="44dp"
+        android:fontFamily="@font/fuente_alkewallet"
+        android:text="Inicio"
+        android:textColor="@color/white"
+        android:textSize="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_launcher_foreground"
+        tools:layout_editor_absoluteX="287dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <LinearLayout
+        android:layout_width="167dp"
+        android:layout_height="108dp"
+        android:layout_marginBottom="8dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.114"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/textView18"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/fuente_alkewallet"
+            android:text="Bienvenido, Abiel!"
+
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/textView17"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/fuente_alkewallet"
+            android:text="Balance total"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/textView14"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/fuente_alkewallet"
+            android:text="$ 930.47"
+            android:textColor="@color/white"
+            android:textSize="30dp" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/notification_icon"
+        tools:layout_editor_absoluteX="334dp"
+        tools:layout_editor_absoluteY="208dp" />
+
+    <LinearLayout
+        android:layout_width="350dp"
+        android:layout_height="80dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2">
+
+        <Button
+            android:id="@+id/button6"
+            android:layout_width="150dp"
+            android:layout_height="match_parent"
+            android:layout_margin="7dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/color_enviar"
+            android:text="@string/homepage_envio"
+            android:textSize="10dp"
+            app:icon="@drawable/send_icon"/>
+
+        <Button
+            android:id="@+id/button7"
+            android:layout_width="150dp"
+            android:layout_height="match_parent"
+            android:layout_margin="7dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/color_botones"
+            android:text="@string/homepage_ingreso"
+            android:textSize="10dp"
+            app:icon="@drawable/request_icon"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView19"
+        android:layout_width="155dp"
+        android:layout_height="29dp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/fuente_alkewallet"
+        android:text="@string/homepage_ultimas_transferencias"
+        tools:layout_editor_absoluteX="28dp"
+        tools:layout_editor_absoluteY="370dp" />
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/empty_illustration"
+        tools:layout_editor_absoluteY="457dp" />
+
+    <TextView
+        android:id="@+id/textView20"
+        android:layout_width="237dp"
+        android:layout_height="23dp"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/fuente_alkewallet"
+        android:gravity="center"
+        android:text="@string/homepage_no_transferencias"
+        android:textColor="@color/color_off"
+        android:textSize="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView8"
+        app:layout_constraintVertical_bias="0.0" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

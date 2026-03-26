@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginSignupPage">
+
+    <ImageView
+        android:id="@+id/img_rect_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:srcCompat="@drawable/background_rectangle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <ImageView
+        android:id="@+id/img_fondo_login_singup_page"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        android:layout_marginBottom="40dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:srcCompat="@drawable/background" />
+
+    <TextView
+        android:id="@+id/txt_login_signup_page"
+        android:layout_width="206dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="68dp"
+        android:fontFamily="@font/fuente_alkewallet"
+        android:text="@string/login_singup_text_view"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_logo_login_signup_page" />
+
+    <LinearLayout
+        android:id="@+id/lay_botones_login_signup_page"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="20dp"
+        android:orientation="vertical"
+        android:layout_marginHorizontal="100dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBaseline_toBottomOf="parent">
+
+        <Button
+            android:id="@+id/btn_crear_cuenta_login_signup_page"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/color_botones"
+            android:fontFamily="@font/fuente_alkewallet"
+            android:text="@string/singup_crear_cuenta"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/btn_tienes_cuenta_login_signup_page"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="@android:color/transparent"
+            android:clickable="true"
+            android:focusable="true"
+            android:fontFamily="@font/fuente_alkewallet"
+            android:gravity="center|center_vertical"
+            android:text="@string/login_singup_tienes_cuenta"
+            android:textColor="@color/color_botones"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/img_logo_login_signup_page"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="224dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

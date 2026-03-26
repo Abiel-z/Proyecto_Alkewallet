@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SendMoney">
+
+    <ImageView
+        android:id="@+id/img_rect_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:srcCompat="@drawable/background_rectangle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <ImageView
+        android:id="@+id/btn_volver_atras_send_page"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintVertical_bias="0.6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/layout_linea_separacion"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/flecha2" />
+
+    <LinearLayout
+        android:id="@+id/layout_linea_separacion"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintVertical_bias="0"
+        app:layout_constraintHeight_percent="0.12"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+        <View
+            android:layout_gravity="bottom"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/black"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/txt_enviar_dinero"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/fuente_alkewallet"
+        android:text="@string/enviar_dinero_textview"
+        android:textColor="@color/color_titulo"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintVertical_bias="0.6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/layout_linea_separacion" />
+
+    <LinearLayout
+        android:id="@+id/lay_usuario_seleccionado"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="35dp"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/borde_layout"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
+        app:layout_constraintTop_toBottomOf="@id/layout_linea_separacion"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:id="@+id/img_usuario_sel"
+            android:layout_width="40dp"
+            android:layout_height="40dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txt_usuario_sel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="Selecciona usuario"
+                android:textColor="@color/color_off"
+                android:fontFamily="@font/fuente_alkewallet"/>
+
+            <TextView
+                android:id="@+id/txt_correo_sel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:textColor="@color/color_off"
+                android:textSize="12sp"/>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_usuarios"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintBottom_toTopOf="@id/lay_input_cantidad_dinero"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lay_usuario_seleccionado"
+        tools:itemCount="1">
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <TextView
+        android:id="@+id/txt_cantidad_a_transferir_sendpage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:fontFamily="@font/fuente_alkewallet"
+        android:text="@string/enviar_cantidad"
+        android:textColor="@color/color_titulo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/lay_input_cantidad_dinero" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/lay_input_cantidad_dinero"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rectangle_envio_cantidad"
+        android:textColorHint="@color/color_off"
+        android:layout_marginTop="50dp"
+        app:boxBackgroundMode="none"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recycler_usuarios">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txt_cantidad_a_transferir"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@android:color/transparent"
+            android:fontFamily="@font/fuente_alkewallet"
+            android:gravity="top|start"
+            android:hint="Ingrese cantidad"
+            android:inputType="numberDecimal"
+            android:textColor="@color/color_off"
+            android:padding="5dp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/txt_notas_enviar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:fontFamily="@font/fuente_alkewallet"
+        android:text="@string/enviar_ingresar_notas"
+        android:textColor="@color/color_titulo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/lay_input_notas" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/lay_input_notas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="75dp"
+        android:background="@drawable/rectangle_ingreso_envio"
+        android:textColorHint="@color/color_off"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lay_input_cantidad_dinero"
+
+        app:boxBackgroundMode="none">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:backgroundTint="@android:color/transparent"
+            android:gravity="top|start"
+            android:hint="@string/enviar_ingresar_notas_hint"
+            android:fontFamily="@font/fuente_alkewallet"
+            android:inputType="textMultiLine"
+            android:lines="5"
+            android:maxLines="6"
+            android:padding="9dp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/btn_enviar_dinero_send_page"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="25dp"
+        android:backgroundTint="@color/color_enviar"
+        android:text="@string/enviar_dinero_textview"
+        android:fontFamily="@font/fuente_alkewallet"
+        android:textColor="@color/white"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lay_input_notas"
+        app:layout_constraintVertical_bias="1.0" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

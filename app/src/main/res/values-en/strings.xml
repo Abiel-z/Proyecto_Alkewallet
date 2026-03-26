@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">AlkeWallet</string>
+    <string name="iniciar_sesion">Sing Up</string>
+    <string name="registrarse">Log In</string>
+    <string name="singup_text_view">Register and start sending!</string>
+    <string name="login_text_view">Log in and start sending!</string>
+    <string name="ingrese_email">Enter your email</string>
+    <string name="ingrese_clave">Enter your password</string>
+    <string name="olvida_contrasena">¿Forgot your password?</string>
+    <string name="singup_nombre">Name</string>
+    <string name="singup_ingrese_nombre">Enter your name</string>
+    <string name="singup_apellido">Last Name</string>
+    <string name="singup_email">Email</string>
+    <string name="singup_ingrese_email">Enter your email</string>
+    <string name="singup_ingrese_apellido">Enter your last name</string>
+    <string name="singup_clave">Password</string>
+    <string name="singup_ingrese_clave">Enter your password</string>
+    <string name="singup_reclave">Confirm Password</string>
+    <string name="singup_ingrese_reclave">Re-enter your password</string>
+    <string name="singup_crear_cuenta">Create account</string>
+
+    <string name="login_singup_text_view">The safest place for your money</string>
+    <string name="login_singup_tienes_cuenta">¿Already have an account?</string>
+
+    <string name="login_contrasena">Password</string>
+    <string name="login_email">Email</string>
+    <string name="login_no_tienes_cuenta">Dont have an account?</string>
+
+
+    <string name="homepage_ultimas_transferencias">Lasts transactions</string>
+    <string name="homepage_no_transferencias">No transactions registered!</string>
+    <string name="homepage_envio">Send Money</string>
+    <string name="homepage_ingreso">Deposit Money</string>
+    <string name="homepage_inicio">Home</string>
+    <string name="homepage_bienvenido">Welcome</string>
+    <string name="homepage_balance">Total balance</string>
+
+    <string name="perfil_miperfil">My Profile</string>
+    <string name="perfil_miinformacion">My information</string>
+    <string name="perfil_mistarjetas">My cards</string>
+    <string name="perfil_opciones">Options</string>
+    <string name="perfil_centroayuda">Help Center</string>
+
+    <string name="enviar_dinero_textview">Send Money</string>
+    <string name="ingresar_dinero_textview">Request Money"</string>
+    <string name="ingresar_cantidad">Amount to transfer</string>
+    <string name="enviar_cantidad">Amount to send</string>
+    <string name="enviar_ingresar_notas">Transfer notes</string>
+    <string name="enviar_ingresar_notas_hint">Add transfer notes (optional)</string>
+
+
+
+
+</resources>

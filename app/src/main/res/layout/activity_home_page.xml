@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HomePage">
+
+
+    <ImageView
+        android:id="@+id/img_rect_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:srcCompat="@drawable/background_rectangle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <ImageView
+        android:id="@+id/img_fondo_home_page"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/header_homepage" />
+
+    <TextView
+        android:id="@+id/txt_inicio_home_page"
+        android:layout_width="131dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="44dp"
+        android:fontFamily="@font/fuente_alkewallet"
+        android:text="@string/homepage_inicio"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/btn_perfil_home_page"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/ic_launcher_foreground" />
+
+    <LinearLayout
+        android:id="@+id/lay_saldo_home_page"
+        android:layout_width="167dp"
+        android:layout_height="108dp"
+        android:layout_marginBottom="8dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@+id/img_fondo_home_page"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.114"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/txt_bienvenido_saldo_home_page"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/fuente_alkewallet"
+            android:text="@string/homepage_bienvenido"
+
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/txt_balance_saldo_home_page"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/fuente_alkewallet"
+            android:text="@string/homepage_balance"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/txt_saldo_home_page"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/fuente_alkewallet"
+            android:text="$ 930.47"
+            android:textColor="@color/white"
+            android:textSize="30sp" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imb_notificacion_home_page"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="44dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_perfil_home_page"
+        android:src="@drawable/notification_icon" />
+
+    <LinearLayout
+        android:id="@+id/lay_botones_envio_ingreso_home_page"
+        android:layout_width="350dp"
+        android:layout_height="80dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_fondo_home_page">
+
+        <Button
+            android:id="@+id/btn_enviar_home_page"
+            android:layout_width="150dp"
+            android:layout_height="match_parent"
+            android:layout_margin="7dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/color_enviar"
+            android:fontFamily="@font/fuente_alkewallet"
+            android:text="@string/homepage_envio"
+            android:textSize="10sp"
+            app:icon="@drawable/send_icon" />
+
+        <Button
+            android:id="@+id/btn_ingreso_home_page"
+            android:layout_width="150dp"
+            android:layout_height="match_parent"
+            android:layout_margin="7dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/color_botones"
+            android:fontFamily="@font/fuente_alkewallet"
+            android:text="@string/homepage_ingreso"
+            android:textSize="10sp"
+            app:icon="@drawable/request_icon"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/txt_ultimas_transacciones_home_page"
+        android:layout_width="155dp"
+        android:layout_height="29dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/fuente_alkewallet"
+        android:text="@string/homepage_ultimas_transferencias"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lay_botones_envio_ingreso_home_page" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_transacciones_home_page"
+        android:layout_width="359dp"
+        android:layout_height="317dp"
+        android:layout_marginTop="52dp"
+        android:orientation="vertical"
+        tools:itemCount="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lay_botones_envio_ingreso_home_page"/>
+
+    <LinearLayout
+        android:id="@+id/lay_transacciones_home_page_empty"
+        android:layout_width="359dp"
+        android:layout_height="317dp"
+        android:layout_marginTop="52dp"
+        android:orientation="vertical"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lay_botones_envio_ingreso_home_page">
+
+        <ImageView
+            android:id="@+id/img_empty_transaccion_home_page"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="25dp"
+            app:srcCompat="@drawable/empty_illustration" />
+
+        <TextView
+            android:id="@+id/txt_no_transacciones_home_page"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/fuente_alkewallet"
+            android:text="@string/homepage_no_transferencias"
+            android:textColor="@color/color_off"
+            android:textSize="12dp" />
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

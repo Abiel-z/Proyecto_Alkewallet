@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="input_field_ancho">400dp</dimen>
+    <dimen name="input_field_alto">100dp</dimen>
+    <dimen name="singup_margen">5dp</dimen>
+    <dimen name="posicion_botones_inicio">590dp</dimen>
+</resources>
