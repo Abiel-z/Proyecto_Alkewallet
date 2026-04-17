@@ -52,32 +52,30 @@
         <LinearLayout
             android:id="@+id/lay_datos_signup_page"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/txt_nombre_signup_page"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/singup_margen"
+                android:layout_marginHorizontal="@dimen/singup_margen"
                 android:fontFamily="@font/fuente_alkewallet"
                 android:text="@string/singup_nombre"
                 android:textColor="@color/color_off" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="0dp"
+                android:layout_height="match_parent"
                 android:textColorHint="@color/color_off">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/txt_ingreso_nombre_signup_page"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/singup_margen"
-                    android:layout_weight="1"
+                    android:layout_marginHorizontal="@dimen/singup_margen"
                     android:backgroundTint="@android:color/transparent"
-                    android:hint="@string/singup_ingrese_nombre" />
+                    android:hint="@string/singup_ingrese_nombre"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -85,97 +83,94 @@
                 android:id="@+id/txt_apellido_signup_page"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/singup_margen"
+                android:layout_marginHorizontal="@dimen/singup_margen"
                 android:fontFamily="@font/fuente_alkewallet"
                 android:text="@string/singup_apellido"
                 android:textColor="@color/color_off" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="0dp"
+                android:layout_height="match_parent"
                 android:textColorHint="@color/color_off">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/txt_ingreso_apellido_signup_page"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_margin="@dimen/singup_margen"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/singup_margen"
                     android:backgroundTint="@android:color/transparent"
-                    android:hint="@string/singup_ingrese_apellido" />
+                    android:hint="@string/singup_ingrese_apellido"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:id="@+id/txt_email_signup_page"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/singup_margen"
+                android:layout_marginHorizontal="@dimen/singup_margen"
                 android:fontFamily="@font/fuente_alkewallet"
                 android:text="@string/singup_email"
                 android:textColor="@color/color_off" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="0dp"
-                android:backgroundTint="@color/color_off"
+                android:layout_height="match_parent"
+                android:hint="@string/singup_ingrese_email"
                 android:textColorHint="@color/color_off">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/txt_ingreso_email_signup_page"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_margin="@dimen/singup_margen"
-                    android:backgroundTint="@android:color/transparent"
-                    android:hint="@string/singup_ingrese_email" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/singup_margen"
+                    android:backgroundTint="@android:color/transparent" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:id="@+id/txt_contrasena_signup_page"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/singup_margen"
+                android:layout_marginHorizontal="@dimen/singup_margen"
                 android:fontFamily="@font/fuente_alkewallet"
                 android:text="@string/singup_clave"
                 android:textColor="@color/color_off" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:textColorHint="@color/color_off"
+                android:hint="@string/singup_ingrese_clave"
                 app:endIconMode="password_toggle">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/txt_ingreso_contrasena_signup_page"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_margin="@dimen/singup_margen"
-                    android:backgroundTint="@android:color/transparent"
-                    android:hint="@string/singup_ingrese_clave" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/singup_margen"
+                    android:backgroundTint="@android:color/transparent" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:id="@+id/txt_confirmar_contrasena_signup_page"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/singup_margen"
+                android:layout_marginHorizontal="@dimen/singup_margen"
                 android:fontFamily="@font/fuente_alkewallet"
                 android:text="@string/singup_reclave"
                 android:textColor="@color/color_off" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:textColorHint="@color/color_off"
+                android:hint="@string/singup_ingrese_reclave"
                 app:endIconMode="password_toggle">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/txt_ingreso_confirmar_contrasena_signup_page"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_margin="@dimen/singup_margen"
-                    android:backgroundTint="@android:color/transparent"
-                    android:hint="@string/singup_ingrese_reclave" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/singup_margen"
+                    android:backgroundTint="@android:color/transparent"/>
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
     </ScrollView>

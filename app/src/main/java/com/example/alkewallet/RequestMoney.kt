@@ -1,116 +1,186 @@
-package com.example.alkewallet;
+package com.example.alkewallet
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.os.Bundle
+import android.view.View
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.OnApplyWindowInsetsListener
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.alkewallet.data.local.Usuario
+import com.example.alkewallet.data.local.UsuariosAdapter
+import com.example.alkewallet.data.local.UsuariosAdapter.OnUsuarioClick
+import com.google.android.material.bottomsheet.BottomSheetDialog
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import com.example.alkewallet.data.local.AppDatabase
+import com.example.alkewallet.data.local.Transaccion
+import com.example.alkewallet.data.network.RetrofitCliente
+import com.squareup.picasso.Picasso
+import java.text.SimpleDateFormat
+import java.util.*
 
-import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+class RequestMoney : AppCompatActivity() {
+    var btnIngresarDinero: Button? = null
+    var btnVolverAtras: ImageView? = null
+    var txtMonto: TextView? = null
+    var txtUsuarioSeleccionado: TextView? = null
+    private val listaUsuarios = mutableListOf<Usuario>()
+    var imgUsuarioSeleccionado: ImageView? = null
+    var txtCorreoSeleccionado: TextView? = null
+    var usuarioSeleccionado: Usuario? = null
+    var layUsuarioSeleccionado: View? = null
+    private var userId : String = ""
 
-import com.example.alkewallet.model.ModelUsuarios;
-import com.example.alkewallet.model.Usuario;
-import com.example.alkewallet.model.UsuariosAdapter;
-import com.google.android.material.bottomsheet.BottomSheetDialog;
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        this.enableEdgeToEdge()
+        setContentView(R.layout.activity_request_money_page)
+        ViewCompat.setOnApplyWindowInsetsListener(
+            findViewById<View?>(R.id.main),
+            OnApplyWindowInsetsListener { v: View?, insets: WindowInsetsCompat? ->
+                val systemBars = insets!!.getInsets(WindowInsetsCompat.Type.systemBars())
+                v!!.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+                insets
+            })
 
-import java.util.List;
+        userId = intent.getStringExtra("userId") ?: ""
+        println("USER ID RECIBIDO EN REQUEST : $userId")
+        cargarUsuarios()
 
-public class RequestMoney extends AppCompatActivity {
+        txtMonto = findViewById<TextView>(R.id.txt_cantidad_a_transferir)
+        btnIngresarDinero = findViewById<Button>(R.id.btn_ingresar_dinero_request_page)
+        txtUsuarioSeleccionado = findViewById<TextView>(R.id.txt_usuario_sel)
+        imgUsuarioSeleccionado = findViewById<ImageView?>(R.id.img_usuario_sel)
+        txtCorreoSeleccionado = findViewById<TextView>(R.id.txt_correo_sel)
+        layUsuarioSeleccionado = findViewById<View>(R.id.lay_usuario_seleccionado)
 
-    Button btnIngresarDinero;
-    ImageView btnVolverAtras;
-    TextView txtMonto;
-    TextView txtUsuarioSeleccionado;
-    List<Usuario> listaUsuarios;
-    ImageView imgUsuarioSeleccionado;
-    TextView txtCorreoSeleccionado;
-    Usuario usuarioSeleccionado;
-    View layUsuarioSeleccionado;
+        layUsuarioSeleccionado!!.setOnClickListener(View.OnClickListener { v: View? ->
+            mostrarBottomSheetUsuarios()
+        })
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_request_money_page);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+        btnIngresarDinero!!.setOnClickListener {
 
-        txtMonto = findViewById(R.id.txt_cantidad_a_transferir);
-        btnIngresarDinero = findViewById(R.id.btn_ingresar_dinero_request_page);
-        txtUsuarioSeleccionado = findViewById(R.id.txt_usuario_sel);
-        imgUsuarioSeleccionado = findViewById(R.id.img_usuario_sel);
-        txtCorreoSeleccionado = findViewById(R.id.txt_correo_sel);
-        layUsuarioSeleccionado = findViewById(R.id.lay_usuario_seleccionado);
-
-        listaUsuarios = ModelUsuarios.INSTANCE.getUsuarios();
-
-        layUsuarioSeleccionado.setOnClickListener(v -> {
-            mostrarBottomSheetUsuarios();
-        });
-
-        btnIngresarDinero.setOnClickListener(view ->{
-            String sendMonto = txtMonto.getText().toString();
-
+            // RECIBIR LA INFORMACION DEL FORMULARIO EN EL ACTIVITY
+            val sendMonto = txtMonto!!.getText().toString()
             if (sendMonto.isEmpty()) {
-                return;
-            }
-            double monto;
-            try {
-                monto = Double.parseDouble(sendMonto);
-            } catch (NumberFormatException e) {
-                txtMonto.setError("Ingrese una cantidad válida");
-                return;
+                return@setOnClickListener
             }
 
-            Intent resultIntent = new Intent();
-            resultIntent.putExtra("monto", monto);
-            resultIntent.putExtra("tipo", "DEPOSITO");
-
-            if (usuarioSeleccionado == null){
-                txtUsuarioSeleccionado.setError("Selecciona un usuario");
+            // VALIDAR SI LA ES UN MONTO VALIDO
+            val monto = try {
+                sendMonto.toDouble()
+            } catch (e: NumberFormatException) {
+                txtMonto!!.error = "Ingrese una cantidad válida"
+                return@setOnClickListener
             }
 
-            resultIntent.putExtra("usuario", usuarioSeleccionado.getNombre());
-            resultIntent.putExtra("fotoPerfil", usuarioSeleccionado.getFotoPerfil());
+            // CONFIRMAR QUE EXISTA UN USUARIO SELECCIONADO
+            if (usuarioSeleccionado == null) {
+                txtUsuarioSeleccionado!!.error = "Selecciona un usuario"
+            }
 
-            System.out.println("Transferencia realizada con éxito. Monto: " + monto + " DEPOSITO");
-            setResult(RESULT_OK, resultIntent);
-            finish();
-        });
+            // INICIO CORRUTINA
+            CoroutineScope(Dispatchers.IO).launch {
+                try {
+                    // INICIAR VARIABLES TRANSACCION
+                    val api = RetrofitCliente.transaccionApi
+                    val userApi = RetrofitCliente.userApi
+                    val db = AppDatabase.getDatabase(this@RequestMoney)
 
-        btnVolverAtras = findViewById(R.id.btn_volver_atras_request_page);
-        btnVolverAtras.setOnClickListener(view ->{
-            finish();
-        });
+                    // OBTENER USUARIOS DE LA API PARA LA TRANSACCION
+                    val origen = userApi.obtenerUsuario(usuarioSeleccionado!!.id)
+                    val destino = userApi.obtenerUsuario(userId)
 
+                    // VALIDAR SALDO DISPONIBLE PARA REALIZAR LA TRANSACCION
+                    if (origen.saldo < monto) {
+                        runOnUiThread {
+                            txtMonto!!.error = "Saldo insuficiente"
+                        }
+                        return@launch
+                    }
+
+                    // CREAR NUEVOS ESTADOS DE LAS CUENTAS
+                    val origenActualizado = origen.copy(saldo = origen.saldo - monto)
+                    val destinoActualizado = destino.copy(saldo = destino.saldo + monto)
+                    // ACTUALIZAR NUEVOS ESTADOS EN LA API
+                    userApi.actualizarUsuario(origen.id, origenActualizado)
+                    userApi.actualizarUsuario(destino.id, destinoActualizado)
+                    //CREAR NUEVA TRANSACCION
+                    val nueva = Transaccion(
+                        id = UUID.randomUUID().toString(),
+                        monto = monto,
+                        fecha = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault()).format(Date()),
+                        cuentaOrigen = usuarioSeleccionado!!.id,
+                        cuentaDestino = userId,
+                        descripcion = ""
+                    )
+
+                    // ENVÍO DE LOS DATOS A LA DB A TRAVÉS DE LA API
+                    val response = api.crearTransaccion(nueva)
+                    db.transaccionDao().insertar(response)
+                    db.usuarioDao().insertar(origenActualizado)
+                    db.usuarioDao().insertar(destinoActualizado)
+
+                    runOnUiThread {
+                        finish()
+                    }
+
+                } catch (e: Exception) {
+                    runOnUiThread {
+                        txtMonto!!.error = "Error al enviar"
+                    }
+                }
+            }
+        }
+
+        // LOGICA BOTON PARA VOLVER A LA PESTAÑA ANTERIOR
+        btnVolverAtras = findViewById<ImageView>(R.id.btn_volver_atras_request_page)
+        btnVolverAtras!!.setOnClickListener(View.OnClickListener { view: View? ->
+            finish()
+        })
     }
-    private void mostrarBottomSheetUsuarios(){
-        BottomSheetDialog dialog = new BottomSheetDialog(this);
 
-        View view = getLayoutInflater().inflate(R.layout.item_bottomsheet_usuarios, null);
+    // FUNCION PARA CARGAR LOS USUARIOS DISPONIBLES DESDE LA API
+        private fun cargarUsuarios(){
+            CoroutineScope(Dispatchers.IO).launch {
+                val dao = AppDatabase.getDatabase(this@RequestMoney).usuarioDao()
+                val usuariosDb = dao.obtenerTodosSinConsultor(userId)
 
-        dialog.setContentView(view);
-        RecyclerView recycler = view.findViewById(R.id.recycler_bottom_usuarios);
-        recycler.setLayoutManager(new LinearLayoutManager(this));
-        UsuariosAdapter adapter = new UsuariosAdapter(listaUsuarios, usuario -> {
-            usuarioSeleccionado = usuario;
-            txtUsuarioSeleccionado.setText(usuario.getNombre());
-            imgUsuarioSeleccionado.setImageResource(usuario.getFotoPerfil());
-            txtCorreoSeleccionado.setText(usuario.getCorreo());
-            dialog.dismiss();
-        });
-        recycler.setAdapter(adapter);
-        dialog.show();
+                runOnUiThread {
+                    listaUsuarios.clear()
+                    listaUsuarios.addAll(usuariosDb)
+                }
+            }
+    }
 
+    // FUNCION PARA MOSTRAR EL LAYOUT DE USUARIO DISPONIBLES
+    private fun mostrarBottomSheetUsuarios() {
+        val dialog = BottomSheetDialog(this)
+
+        val view = getLayoutInflater().inflate(R.layout.item_bottomsheet_usuarios, null)
+
+        dialog.setContentView(view)
+        val recycler = view.findViewById<RecyclerView>(R.id.recycler_bottom_usuarios)
+        recycler.setLayoutManager(LinearLayoutManager(this))
+        val adapter = UsuariosAdapter(listaUsuarios, OnUsuarioClick { usuario: Usuario? ->
+            usuarioSeleccionado = usuario
+            txtUsuarioSeleccionado!!.setText(usuario!!.nombre)
+            txtCorreoSeleccionado!!.setText(usuario.correo)
+            val url = "https://i.pravatar.cc/150?img=${usuario.id}"
+            Picasso.get()
+                .load(url)
+                .placeholder(R.drawable.ic_launcher_foreground)
+                .into(imgUsuarioSeleccionado)
+            dialog.dismiss()
+        })
+        recycler.setAdapter(adapter)
+        dialog.show()
     }
 }

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">AlkeWallet</string>
-    <string name="iniciar_sesion">Sing Up</string>
-    <string name="registrarse">Log In</string>
+    <string name="iniciar_sesion">Log In</string>
+    <string name="registrarse">Sign Up</string>
     <string name="singup_text_view">Register and start sending!</string>
     <string name="login_text_view">Log in and start sending!</string>
     <string name="ingrese_email">Enter your email</string>
@@ -33,7 +33,7 @@
     <string name="homepage_envio">Send Money</string>
     <string name="homepage_ingreso">Deposit Money</string>
     <string name="homepage_inicio">Home</string>
-    <string name="homepage_bienvenido">Welcome</string>
+    <string name="homepage_bienvenido">Welcome %1$s</string>
     <string name="homepage_balance">Total balance</string>
 
     <string name="perfil_miperfil">My Profile</string>
